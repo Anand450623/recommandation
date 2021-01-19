@@ -32,10 +32,10 @@ def create_destination_map(curr):
 def create_user_map(curr, destination_map):
 
     user_map = dict()
-    curr.execute("select code, age, name, gender, company from people")
+    curr.execute("select code, name, age, gender, company from people")
 
     dest_count_init_arr = [0] * (2 * len(destination_map.keys()))
-    for code, age, name, gender, company in curr.fetchall():
+    for code, name, age, gender, company in curr.fetchall():
         user_map[code] = [code, name, age, gender, company]
         user_map[code].extend(dest_count_init_arr)
 
@@ -164,7 +164,7 @@ def get_month_wise_travel_data(curr, user_data, offset):
 
 def create_and_save_results(user_data, destination_map):
 
-    column_list = ['code', 'age', 'name', 'gender', 'company']
+    column_list = ['code', 'name', 'age', 'gender', 'company']
 
     rev_destination_map = dict()
     for destination, index in destination_map.items():
